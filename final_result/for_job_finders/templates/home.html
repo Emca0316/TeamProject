@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>CSED232 T.P. 5조</title>
+        <style>
+            body {
+                background-image: url("https://www.google.com/imgres?imgurl=http%3A%2F%2Fwww.postech.ac.kr%2Fwp-content%2Fthemes%2Fpostech%2Fimages%2Fimgs%2Fstudent-hall_img1.jpg&imgrefurl=http%3A%2F%2Fwww.postech.ac.kr%2Fcampus-life%2Fwelfare-facilities%2Fstudent-hall%2F&docid=VJ3HBlTgy4EN-M&tbnid=UQLFkOx0yiuzzM%3A&vet=10ahUKEwjdrruh9ZHmAhWUfXAKHeSHBdwQMwh6KAAwAA..i&w=800&h=644&bih=754&biw=1536&q=%ED%8F%AC%ED%95%AD%EA%B3%B5%EB%8C%80&ved=0ahUKEwjdrruh9ZHmAhWUfXAKHeSHBdwQMwh6KAAwAA&iact=mrc&uact=8");
+                background-size: 100% 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>NEWS KEYWORD FOR JOB SEEKERS</h1>
+        <form action="/result/" method="post">
+            {% csrf_token %}
+            Select the <b>'Subject'</b> and the <b>'Starting Date'</b> of 7 days
+            <br>
+            <select name="subject" required>
+                <option value="1">정치</option>
+                <option value="2">경제</option>
+                <option value="3">사회</option>
+                <option value="4">생활/문화</option>
+                <option value="5">세계</option>
+                <option value="6">IT/과학</option>
+            </select>
+            <br>
+            <select name="year" required>
+                <option value="2005" selected="selected">2005</option>
+                <option value="2006">2006</option>
+                <option value="2007">2007</option>
+                <option value="2008">2008</option>
+                <option value="2009">2009</option>
+                <option value="2010">2010</option>
+                <option value="2011">2011</option>
+                <option value="2012">2012</option>
+                <option value="2013">2013</option>
+                <option value="2014">2014</option>
+                <option value="2015">2015</option>
+                <option value="2016">2016</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+            </select>
+            <select name="month" required>
+                <option value="1" selected="selected">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+            <select name="day">
+                <option value="1" selected="selected">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+            </select>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+        <br>
+        <b>Top 5 keywords</b> and <b>News links</b> of each keyword.
+        <br>
+        주제: {{subject}}
+        <br>
+        기간: {{st_year}}/{{st_month}}/{{st_day}}/ - {{ed_year}}/{{ed_month}}/{{ed_day}}/
+        <br>
+        <h1 style = "border:2px solid Black"><b>{{top5_final_keywords.0}}</b></h1>
+        <ul>
+        {% for each in top5_final_keywordss_headlines_and_links.0 %}
+            <li><a href="https://news.naver.com{{each.1}}">{{each.0}}</a></li>
+        {% endfor %}
+        </ul>
+
+        <h1 style = "border:2px solid Red"><b>{{top5_final_keywords.1}}</b></h1>
+        <ul>
+        {% for each in top5_final_keywordss_headlines_and_links.1 %}
+            <li><a href="https://news.naver.com{{each.1}}">{{each.0}}</a></li>
+        {% endfor %}
+        </ul>
+
+        <h1 style = "border:2px solid Orange"><b>{{top5_final_keywords.2}}</b></h1>
+        <ul>
+        {% for each in top5_final_keywordss_headlines_and_links.2 %}
+            <li><a href="https://news.naver.com{{each.1}}">{{each.0}}</a></li>
+        {% endfor %}
+        </ul>
+
+        <h1 style = "border: 2px solid DodgerBlue"><b>{{top5_final_keywords.3}}</b></h1>
+        <ul>
+        {% for each in top5_final_keywordss_headlines_and_links.3 %}
+            <li><a href="https://news.naver.com{{each.1}}">{{each.0}}</a></li>
+        {% endfor %}
+        </ul>
+
+        <h1 style="border:2px solid Violet"><b>{{top5_final_keywords.4}}</b></h1>
+        <ul>
+        {% for each in top5_final_keywordss_headlines_and_links.4 %}
+            <li><a href="https://news.naver.com{{each.1}}">{{each.0}}</a></li>
+        {% endfor %}
+        </ul>
+        <footer>
+            <div id="seriveNameArea">
+                <a href="/">
+                    <h2>CSE232 T.P. 5조</h2>
+                </a>
+             </div>
+            <ul>
+                <li>조원소개</li>
+                <li>위치</li>
+            </ul>
+            <address>주소: 대한민국 경상북도 포항시 남구 청암로 77</address>
+        </footer>
+    </body>
+</html>
